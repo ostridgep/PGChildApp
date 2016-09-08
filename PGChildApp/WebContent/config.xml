@@ -46,6 +46,7 @@
 <<gap:plugin name="uk.co.ibcomputing.phonegapbuild.plugins.receivesendintents" version="0.2.0">
     <param name="LAUNCHMODE" value="singleTop" />
 </gap:plugin>
+
     <!-- Core plugins -->
     <plugin name="cordova-plugin-battery-status" />
     <plugin name="cordova-plugin-camera" />
@@ -67,6 +68,8 @@
     <plugin name="cordova-plugin-vibration" />
 
     <!-- Third party plugins -->
+     <plugin name="cordova-custom-config" />
+    
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
         <plugin name="com.phonegap.plugins.barcodescanner" />
