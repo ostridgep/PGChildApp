@@ -18,12 +18,12 @@
  */
 function checkPassedParams(){
 
-
+alert("here")
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
 		    	alert("url:"+url)
 		      if (url.indexOf('myjobschild://' > -1)) {
 		    	  xx=url.split("?")
-		    	  xxx=xx.split("=")
+		    	  xxx=xx[1].split("=")
 		    	  if(xxx[0]=="MYJOBS")
 		    	  	{
 		    		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
