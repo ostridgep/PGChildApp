@@ -70,7 +70,7 @@ marker.addListener('click', function(event) {
     var lat = marker.getPosition().lat();
 	var lng = marker.getPosition().lng();
 	llval=lat+","+lng
-	if(call=="myjobs"){
+	if(caller=="myjobs"){
 		window.open("myjobshost://?latlong="+llval)
 		location.href="index.html"
 	}
