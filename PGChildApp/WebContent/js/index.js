@@ -17,13 +17,20 @@
  * under the License.
  */
 function displayPassedParams(){
-	window.plugins.webintent.getExtra(WebIntent.EXTRA_TEXT, 
-		    function(url) {
-		        alert(url+" was passed")
-		    }, function() {
-		        alert("Nowt was passed")
-		    }
-		);
+
+
+		    window.plugins.launchmyapp.getLastIntent(function(url) {
+		      if (intent.indexOf('MyJobs://' > -1)) {
+		        console.log("received url: " + url);
+		      } else {
+		        return console.log("ignore intent: " + url);
+		      }
+		    }, function(error) {
+		      return console.log("no intent received");
+		    });
+		    return;
+
+
 }
 var app = {
     // Application Constructor
