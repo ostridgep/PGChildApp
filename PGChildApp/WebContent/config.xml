@@ -43,7 +43,7 @@
     -->
 <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
     <!-- Plugins -->
-<<gap:plugin name="uk.co.ibcomputing.phonegapbuild.plugins.receivesendintents" version="0.2.0">
+<gap:plugin name="uk.co.ibcomputing.phonegapbuild.plugins.receivesendintents" version="0.2.0">
     <param name="LAUNCHMODE" value="singleTop" />
 </gap:plugin>
 
@@ -68,7 +68,7 @@
     <plugin name="cordova-plugin-vibration" />
 
     <!-- Third party plugins -->
-     <plugin name="cordova-custom-config" />
+    <plugin name="cordova-custom-config" />
     
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
