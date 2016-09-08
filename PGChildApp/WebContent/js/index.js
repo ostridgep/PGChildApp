@@ -17,6 +17,7 @@
  * under the License.
  */
 function GetCustomUrl() {
+	alert("Checking url")
     window.plugins.webintent.getUri(function(url) {
         if(url !== "") {
             // Here you need to first split with "?" then later with "&"
