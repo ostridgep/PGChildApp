@@ -20,7 +20,7 @@ function displayPassedParams(){
 
 
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
-		      if (intent.indexOf('MyJobsChild://' > -1)) {
+		      if (intent.indexOf('myjobschild://' > -1)) {
 		        console.log("received url: " + url);
 		      } else {
 		        return console.log("ignore intent: " + url);
