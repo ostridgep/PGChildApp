@@ -16,6 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+function GetCustomUrl() {
+    window.plugins.webintent.getUri(function(url) {
+        if(url !== "") {
+            // Here you need to first split with "?" then later with "&"
+            var link = url.split("?"); 
+            var keysPair = link[1].split("&");
+            alert(keysPair[0]+":"+keysPair[1])
+            // use as per your need
+        }
+    });
+} 
 var app = {
     // Application Constructor
     initialize: function() {
@@ -27,6 +38,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+       
     },
     // deviceready Event Handler
     //
@@ -34,6 +46,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        GetCustomUrl();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
