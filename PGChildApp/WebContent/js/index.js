@@ -17,13 +17,14 @@
  * under the License.
  */
 function GetCustomUrl() {
-	alert("Checking url")
+	alert("Checking url1")
     window.plugins.webintent.getUri(function(url) {
         if(url !== "") {
             // Here you need to first split with "?" then later with "&"
             var link = url.split("?"); 
+            alert(link)
             var keysPair = link[1].split("&");
-            alert(keysPair[0]+":"+keysPair[1])
+            //alert(keysPair[0]+":"+keysPair[1])
             // use as per your need
         }
     });
