@@ -41,7 +41,7 @@
         Define a specific version of PhoneGap to build into your app.
         <preference name="phonegap-version"       value="3.5.0" />
     -->
-
+<preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
     <!-- Plugins -->
 <plugin name="net.tunts.webintent" spec="0.2.1" source="pgb" />
     <!-- Core plugins -->
