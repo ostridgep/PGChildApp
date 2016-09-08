@@ -42,7 +42,7 @@
         <preference name="phonegap-version"       value="3.5.0" />
     -->
 <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
-  <param name="URL_SCHEME" value="MyJobsChild" />
+  <param name="URL_SCHEME" value="myjobschild" />
 </gap:plugin>
     <!-- Plugins -->
 
