@@ -16,13 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-function displayPassedParams(){
-alert("here")
+function checkPassedParams(){
+
 
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
 		    	alert("url:"+url)
 		      if (url.indexOf('myjobschild://' > -1)) {
-		        alert("received url: " + url);
+		    	  xx=url.split("?")
+		    	  xxx=xx.split("=")
+		    	  if(xxx[0]=="MYJOBS")
+		    	  	{
+		    		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
+		    		  }
+		    	  else{
+		    		  alert("received url: " + xxx[0]+"---"+xxx[1]); 
+		    	  	}
+		    	  
+		    	  
+		       
 		      } else {
 		    	  alert("ignore intent: " + url);
 		      }
