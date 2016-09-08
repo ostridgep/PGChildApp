@@ -17,18 +17,19 @@
  * under the License.
  */
 function displayPassedParams(){
-
+alert("here")
 
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
-		      if (intent.indexOf('myjobschild://' > -1)) {
-		        console.log("received url: " + url);
+		    	alert("url:"+url)
+		      if (url.indexOf('myjobschild://' > -1)) {
+		        alert("received url: " + url);
 		      } else {
-		        return console.log("ignore intent: " + url);
+		    	  alert("ignore intent: " + url);
 		      }
 		    }, function(error) {
-		      return console.log("no intent received");
+		    	alert("no intent received");
 		    });
-		    return;
+		   
 
 
 }
