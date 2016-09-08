@@ -43,7 +43,9 @@
     -->
 <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
     <!-- Plugins -->
-<plugin name="net.tunts.webintent" spec="0.2.1" source="pgb" />
+<<gap:plugin name="uk.co.ibcomputing.phonegapbuild.plugins.receivesendintents" version="0.2.0">
+    <param name="LAUNCHMODE" value="singleTop" />
+</gap:plugin>
     <!-- Core plugins -->
     <plugin name="cordova-plugin-battery-status" />
     <plugin name="cordova-plugin-camera" />
@@ -133,5 +135,9 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-
+<intent-filter>
+    <action android:name="android.intent.action.SEND" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <data android:mimeType="text/plain" />
+</intent-filter>
 </widget>

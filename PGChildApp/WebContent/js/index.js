@@ -16,7 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+function displayPassedParams(){
+	window.plugins.webintent.getExtra(WebIntent.EXTRA_TEXT, 
+		    function(url) {
+		        alert(url+" was passed")
+		    }, function() {
+		        alert("Nowt was passed")
+		    }
+		);
+}
 var app = {
     // Application Constructor
     initialize: function() {
