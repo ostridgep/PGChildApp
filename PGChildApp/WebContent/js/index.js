@@ -22,7 +22,7 @@
         };
 var caller=""
 function closeTheApp(){
-	localStorage.setItem('myCat', 'Jerry')
+	window.plugins.copy("This is the Child")
 	if (navigator.app) {
 		navigator.app.exitApp();
 		}
