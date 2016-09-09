@@ -44,6 +44,30 @@ function checkPassedParams(){
 
 
 }
+function checkCall(url){
+
+
+   
+    	alert("ckurl:"+url)
+      if (url.indexOf('myjobschild://' > -1)) {
+    	  xx=url.split("?")
+    	  xxx=xx[1].split("=")
+    	  if(xxx[0]=="MYJOBS")
+    	  	{
+    		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
+    		  }
+    	  else{
+    		  alert("ckreceived url: " + xxx[0]+"---"+xxx[1]); 
+    	  	}
+    	  
+    	  
+       
+      } else {
+    	  alert("ckignore intent: " + url);
+      }
+    }  
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -65,9 +89,7 @@ var app = {
     onDeviceReady: function() {
     	
         app.receivedEvent('deviceready');
-        var handleOpenURL = function(url) {
-            alert("RECEIVED URL: " + url);
-        };
+       
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -80,6 +102,10 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        var handleOpenURL = function(url) {
+            alert("RECEIVED URL: " + url);
+            checkCall(url)
+        };
     }
 };
 function openMap(){
