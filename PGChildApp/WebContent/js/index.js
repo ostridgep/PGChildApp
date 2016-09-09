@@ -17,12 +17,12 @@
  * under the License.
  */
  var handleOpenURL = function(url) {
-         alert("openurl"+url+"::::"+localStorage.getItem('myCat') )  
+        
             checkCall(url)
         };
 var caller=""
-function closeTheApp(){
-	window.plugins.clipboard.copy("This is the Child")
+function closeTheApp(val){
+	window.plugins.clipboard.copy(val)
 	if (navigator.app) {
 		navigator.app.exitApp();
 		}
@@ -37,7 +37,7 @@ function checkPassedParams(){
 
 
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
-		    	alert("url:"+url)
+		    	
 		      if (url.indexOf('myjobschild://' > -1)) {
 		    	  xx=url.split("?")
 		    	  xxx=xx[1].split("=")
@@ -51,10 +51,10 @@ function checkPassedParams(){
 		    	  
 		       
 		      } else {
-		    	  alert("ignore intent: " + url);
+		    	 
 		      }
 		    }, function(error) {
-		    	alert("no intent received");
+		    	
 		    });
 		   
 
@@ -64,25 +64,23 @@ function checkCall(url){
 
 
    
-    	alert("ckurl:"+url)
+    	
       if (url.indexOf('myjobschild://' > -1)) {
-    	  alert("1")
+    	 
     	  xx=url.split("?")
     	  xxx=xx[1].split("=")
-    	  alert(xxx[0])
+    	
     	  if(xxx[0]=="MYJOBS")
     	  	{
-    		  alert("call is Host App")
+    		 
     		  caller="MYJOBS"
     		  }
-    	  else{
-    		  alert("ckreceived url: " + xxx[0]+"---"+xxx[1]); 
-    	  	}
+    	  
     	  
     	  
        
       } else {
-    	  alert("ckignore intent: " + url);
+    	//  alert("ckignore intent: " + url);
       }
     }  
 
