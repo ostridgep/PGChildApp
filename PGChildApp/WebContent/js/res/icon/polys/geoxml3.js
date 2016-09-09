@@ -1,5 +1,5 @@
 /*
-    geoxml3.js
+   geoxml3.js
 
     Renders KML on the Google Maps JavaScript API Version 3 
     http://code.google.com/p/geoxml3/

@@ -5,8 +5,8 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
- <script src="res/polys/geoxml3.js"></script>
-<script src="res/ProjectedOverlay.js"></script>      
+ <script src="js/res/polys/geoxml3.js"></script>
+<script src="js/res/ProjectedOverlay.js"></script>      
 <script>
 
 
@@ -140,30 +140,30 @@ input:checked + .slider:before {
     <p>Some text in the Modal..</p>
     <Table>
 <TR><td><label class="switch">
-  <input type="checkbox" onclick="setLayer(this,'TestData/kml/Huntingdon_Sewers.kml')">
+  <input type="checkbox" onclick="setLayer(this,'Data/kml/Huntingdon_Sewers.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Sewers</font></TD></TR>
 
 <TR valign="center"><td><label class="switch">
-  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/Manholes_Huntingdon.kml')">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'Data/kml/Manholes_Huntingdon.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Manholes</font></TD></TR>
 <TR><td><label class="switch">
-  <input type="checkbox" onclick="setLayer(this,'TestData/kml/SewDischarge_Huntingdon.kml')">
+  <input type="checkbox" onclick="setLayer(this,'Data/kml/SewDischarge_Huntingdon.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Discharge</font></TD></TR>
 
 <TR valign="center"><td><label class="switch">
-  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/SewPump_Huntingdon.kml')">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'Data/kml/SewPump_Huntingdon.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Pumps</font></TD></TR>
 <TR><td><label class="switch">
-  <input type="checkbox" onclick="setLayer(this,'TestData/kml/SewStorage_Huntingdon.kml')">
+  <input type="checkbox" onclick="setLayer(this,'Data/kml/SewStorage_Huntingdon.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Storage</font></TD></TR>
 
 <TR valign="center"><td><label class="switch">
-  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/SewTreatment_Huntingdon.kml')">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'Data/kml/SewTreatment_Huntingdon.kml')">
   <div class="slider"></div>
 </label></TD><TD valign="middle"><font size="5">Treatment</font></TD></TR>
   </div>
@@ -297,11 +297,11 @@ window.onclick = function(event) {
     }
 }
 if(x){
-	hidelayer("TestData/kml/SewDischarge_Huntingdon.kml");
+	hidelayer("Data/kml/SewDischarge_Huntingdon.kml");
 	
 }else{
 	
-	loadlayer("TestData/kml/SewDischarge_Huntingdon.kml");
+	loadlayer("Data/kml/SewDischarge_Huntingdon.kml");
 	
 
 }
