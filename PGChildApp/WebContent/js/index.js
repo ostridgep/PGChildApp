@@ -17,11 +17,12 @@
  * under the License.
  */
  var handleOpenURL = function(url) {
-         alert("openurl"+url)   
+         alert("openurl"+url+"::::"+localStorage.getItem('myCat') )  
             checkCall(url)
         };
 var caller=""
 function closeTheApp(){
+	localStorage.setItem('myCat', 'Jerry')
 	if (navigator.app) {
 		navigator.app.exitApp();
 		}
