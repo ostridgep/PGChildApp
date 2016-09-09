@@ -43,7 +43,7 @@
     -->
 
     <!-- Plugins -->
-    <plugin name="com.verso.cordova.clipboard" spec="0.1.0" source="pgb" />
+    <gap:plugin name="com.verso.cordova.clipboard" spec="0.1.0" source="pgb" />
 <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
   <param name="URL_SCHEME" value="myjobschild" />
 </gap:plugin>
