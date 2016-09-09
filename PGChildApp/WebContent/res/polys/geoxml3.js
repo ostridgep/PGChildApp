@@ -19,7 +19,7 @@
    limitations under the License.
 
 */
-/**
+/** 
  * A MultiGeometry object that will allow multiple polylines in a MultiGeometry
  * containing LineStrings to be treated as a single object
  *

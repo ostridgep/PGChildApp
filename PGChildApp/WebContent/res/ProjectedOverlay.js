@@ -15,7 +15,7 @@
 //    id: Default imageUrl, ID of the div
 //    rotation: default 0, degrees clockwise to rotate the image
 //
-	
+	 
 function ProjectedOverlay(map, imageUrl, bounds, opts)
 {
  google.maps.OverlayView.call(this);
