@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" 
+	
+	data-sap-ui-libs="sap.m,sap.ui.commons"
+	data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-       
+ <script src="res/polys/geoxml3.js"></script>
+<script src="res/ProjectedOverlay.js"></script>      
 <script>
 
 
@@ -13,6 +21,46 @@
 </script>
 </head>
 <style>
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .button {
     background-color: #4CAF50;
     border: none;
@@ -27,14 +75,271 @@
 }
 </style>
 <body>
-<div id="googleMap" style="width:512;height:400px;overflow:visible;"></div>
-  <button class="button" type="button" onClick="closeTheApp("Closed");">Close Page</button>
-   <button class="button" type="button" onClick="map.showDialog();">FullScreen</button>
+<div id="googleMap" style="
+ position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 100px;
+    right: 0;"></div>
+  <button class="button" style="background-color:red " type="button" onClick="closeTheApp('Closed');">Close Page</button>
+  <button id="myBtn" class="button" style="background-color:green " onClick="formLayers.open()">Layers</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">×</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>   
 
 <SCRIPT>
+var larr=[]
+function loadlayer(kml){
+	lno=larr.indexOf(kml)
+	if(lno<0){
+		layers.parse(kml);
+		larr.push(kml)
+	}else{
+		layers.showDocument(layers.docs[lno]);
+	}
+	
+}
+function hidelayer(kml){
+	lno=larr.indexOf(kml)
+	if(lno>=0){
+		layers.hideDocument(layers.docs[lno]);
+	}
+	
+}
+var layers ="";
+var formLayers = new sap.m.Dialog("dlgLayers",{
+    title:"Layers Config",
+    modal: true,
+    contentWidth:"1em",
+    buttons: [
+   
+				new sap.m.Button("dlgConfigCancel", {
+				    text: "Close",
+				    type: 	sap.m.ButtonType.Reject,
+				    tap: [ function(oEvt) {		  
+					 
+				    	formLayers.close()
+						  } ]
+				})
+				],					
+    content:[
+			new sap.m.Table({
+				columns : [
+							new sap.m.Column({
+								styleClass : "key",
+								valign : "Center",
+								width : "35%",
+								hAlign : "Right"
+							}),
+							new sap.m.Column({
+								minScreenWidth : "Medium",
+								demandPopin : true
+							})
+						],
+				items : [
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Sewers"
+									}),
+									new sap.m.Switch('layer1',{
+		   								state: false,
+										type: sap.m.SwitchType.AcceptReject,
+										change: function(evt){
+										if(!sap.ui.getCore().getElementById('layer1').getState()){
+											
+											hidelayer("TestData/kml/Huntingdon_Sewers.kml");
+											
+										}else{
+											
+											loadlayer("TestData/kml/Huntingdon_Sewers.kml");
+											
+										
+										}
+										
+											
+									    },
+										
+									})
+								]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Manholes"
+									}),
+										new sap.m.Switch('layer2',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer2').getState()){
+												hidelayer("TestData/kml/Manholes_Huntingdon.kml");
+												
+											}else{
+												
+												loadlayer("TestData/kml/Manholes_Huntingdon.kml");
+												
+											
+											}
+												
+												
+										    },
+											
+										})
+									]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Discharge"
+									}),
+										new sap.m.Switch('layer3',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer3').getState()){
+												hidelayer("TestData/kml/SewDischarge_Huntingdon.kml");
+												
+											}else{
+												
+												loadlayer("TestData/kml/SewDischarge_Huntingdon.kml");
+												
+											
+											}
+												
+												
+										    },
+											
+										})
+									]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Pump"
+									}),
+										new sap.m.Switch('layer4',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer4').getState()){
+											
+													hidelayer("TestData/kml/SewPump_Huntingdon.kml");
+													
+												}else{
+													
+													loadlayer("TestData/kml/SewPump_Huntingdon.kml");
+												
+												}
+												
+												
+										    },
+											
+										})
+									]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Storage"
+									}),
+										new sap.m.Switch('layer5',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer5').getState()){
+											
+													hidelayer("TestData/kml/SewStorage_Huntingdon.kml");
+													
+												}else{
+													
+													loadlayer("TestData/kml/SewStorage_Huntingdon.kml");
+													
+												
+												}
+												
+												
+										    },
+											
+										})
+									]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Treatment"
+									}),
+										new sap.m.Switch('layer6',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer6').getState()){
+											
+													hidelayer("TestData/kml/SewTreatment_Huntingdon.kml");
+													
+												}else{
+													
+													loadlayer("TestData/kml/SewTreatment_Huntingdon.kml");
+													
+												
+												}
+												
+												
+										    },
+											
+										})
+									]
+							}),
+							new sap.m.ColumnListItem({
+								cells : [
+									new sap.m.Label({
+										text : "Supply"
+									}),
+										new sap.m.Switch('layer7',{
+			   								state: false,
+											type: sap.m.SwitchType.AcceptReject,
+											change: function(evt){
+											if(!sap.ui.getCore().getElementById('layer7').getState()){
+												
+												supply.setMap(null); 
+													
+													
+												}else{
+													
+													supply = new google.maps.KmlLayer({
+													    url: "http://pjomyjobs.azurewebsites.net/SAP.kml",
+													    map: map
+													  });
+													
+												
+												}
+												
+												
+										    },
+											
+										})
+									]
+							})
+			             ]
+			             
+			          
+			          })
+			        ]
+
+ })
 var map;
 
 var llval=""
+	function layerLoaded(){
+	//sap.ui.getCore().byId("LayerLoading").setVisible(false)
+}
 function initialize()
 {
 
@@ -43,6 +348,10 @@ function initialize()
 	    navigator.geolocation.getCurrentPosition(function (position) {
 	    	myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	       map.setCenter(myCenter);
+	       layers = new geoXML3.parser({map: map, 
+	    		afterParse: layerLoaded,
+	    	    zoom: false,
+	    		processStyles: true});
 	    });
 
 
@@ -90,6 +399,36 @@ marker.addListener('click', function(event) {
 
 //initialize()
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
 </SCRIPT>
   </body>
 </html>
