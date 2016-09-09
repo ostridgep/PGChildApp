@@ -21,7 +21,61 @@
 </script>
 </head>
 <style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -82,7 +136,7 @@
     bottom: 100px;
     right: 0;"></div>
   <button class="button" style="background-color:red " type="button" onClick="closeTheApp('Closed');">Close Page</button>
-  <button id="myBtn" class="button" style="background-color:green " onClick="formLayers.open()">Layers</button>
+  <button id="myBtn" class="button" style="background-color:green " onClick=" modal.style.display = 'block';">Layers</button>
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -90,11 +144,52 @@
   <div class="modal-content">
     <span class="close">×</span>
     <p>Some text in the Modal..</p>
+    <Table>
+<TR><td><label class="switch">
+  <input type="checkbox" onclick="setLayer(this,'TestData/kml/Huntingdon_Sewers.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Sewers</font></TD></TR>
+
+<TR valign="center"><td><label class="switch">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/Manholes_Huntingdon.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Manholes</font></TD></TR>
+<TR><td><label class="switch">
+  <input type="checkbox" onclick="setLayer(this,'TestData/kml/SewDischarge_Huntingdon.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Discharge</font></TD></TR>
+
+<TR valign="center"><td><label class="switch">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/SewPump_Huntingdon.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Pumps</font></TD></TR>
+<TR><td><label class="switch">
+  <input type="checkbox" onclick="setLayer(this,'TestData/kml/SewStorage_Huntingdon.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Storage</font></TD></TR>
+
+<TR valign="center"><td><label class="switch">
+  <input id = "cb2" type="checkbox" onclick="setLayer(this,'TestData/kml/SewTreatment_Huntingdon.kml')">
+  <div class="slider"></div>
+</label></TD><TD valign="middle"><font size="5">Treatment</font></TD></TR>
   </div>
 
 </div>   
 
 <SCRIPT>
+function setLayer(checkbox,kml)
+{
+	if(checkbox.checked){
+		loadlayer(kml);
+		
+	}else{
+		hidelayer(kml);
+		
+		
+
+	}
+    
+}
 var larr=[]
 function loadlayer(kml){
 	lno=larr.indexOf(kml)
@@ -114,226 +209,7 @@ function hidelayer(kml){
 	
 }
 var layers ="";
-var formLayers = new sap.m.Dialog("dlgLayers",{
-    title:"Layers Config",
-    modal: true,
-    contentWidth:"1em",
-    buttons: [
-   
-				new sap.m.Button("dlgConfigCancel", {
-				    text: "Close",
-				    type: 	sap.m.ButtonType.Reject,
-				    tap: [ function(oEvt) {		  
-					 
-				    	formLayers.close()
-						  } ]
-				})
-				],					
-    content:[
-			new sap.m.Table({
-				columns : [
-							new sap.m.Column({
-								styleClass : "key",
-								valign : "Center",
-								width : "35%",
-								hAlign : "Right"
-							}),
-							new sap.m.Column({
-								minScreenWidth : "Medium",
-								demandPopin : true
-							})
-						],
-				items : [
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Sewers"
-									}),
-									new sap.m.Switch('layer1',{
-		   								state: false,
-										type: sap.m.SwitchType.AcceptReject,
-										change: function(evt){
-										if(!sap.ui.getCore().getElementById('layer1').getState()){
-											
-											hidelayer("TestData/kml/Huntingdon_Sewers.kml");
-											
-										}else{
-											
-											loadlayer("TestData/kml/Huntingdon_Sewers.kml");
-											
-										
-										}
-										
-											
-									    },
-										
-									})
-								]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Manholes"
-									}),
-										new sap.m.Switch('layer2',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer2').getState()){
-												hidelayer("TestData/kml/Manholes_Huntingdon.kml");
-												
-											}else{
-												
-												loadlayer("TestData/kml/Manholes_Huntingdon.kml");
-												
-											
-											}
-												
-												
-										    },
-											
-										})
-									]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Discharge"
-									}),
-										new sap.m.Switch('layer3',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer3').getState()){
-												hidelayer("TestData/kml/SewDischarge_Huntingdon.kml");
-												
-											}else{
-												
-												loadlayer("TestData/kml/SewDischarge_Huntingdon.kml");
-												
-											
-											}
-												
-												
-										    },
-											
-										})
-									]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Pump"
-									}),
-										new sap.m.Switch('layer4',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer4').getState()){
-											
-													hidelayer("TestData/kml/SewPump_Huntingdon.kml");
-													
-												}else{
-													
-													loadlayer("TestData/kml/SewPump_Huntingdon.kml");
-												
-												}
-												
-												
-										    },
-											
-										})
-									]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Storage"
-									}),
-										new sap.m.Switch('layer5',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer5').getState()){
-											
-													hidelayer("TestData/kml/SewStorage_Huntingdon.kml");
-													
-												}else{
-													
-													loadlayer("TestData/kml/SewStorage_Huntingdon.kml");
-													
-												
-												}
-												
-												
-										    },
-											
-										})
-									]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Treatment"
-									}),
-										new sap.m.Switch('layer6',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer6').getState()){
-											
-													hidelayer("TestData/kml/SewTreatment_Huntingdon.kml");
-													
-												}else{
-													
-													loadlayer("TestData/kml/SewTreatment_Huntingdon.kml");
-													
-												
-												}
-												
-												
-										    },
-											
-										})
-									]
-							}),
-							new sap.m.ColumnListItem({
-								cells : [
-									new sap.m.Label({
-										text : "Supply"
-									}),
-										new sap.m.Switch('layer7',{
-			   								state: false,
-											type: sap.m.SwitchType.AcceptReject,
-											change: function(evt){
-											if(!sap.ui.getCore().getElementById('layer7').getState()){
-												
-												supply.setMap(null); 
-													
-													
-												}else{
-													
-													supply = new google.maps.KmlLayer({
-													    url: "http://pjomyjobs.azurewebsites.net/SAP.kml",
-													    map: map
-													  });
-													
-												
-												}
-												
-												
-										    },
-											
-										})
-									]
-							})
-			             ]
-			             
-			          
-			          })
-			        ]
 
- })
 var map;
 
 var llval=""
@@ -427,7 +303,15 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+if(x){
+	hidelayer("TestData/kml/SewDischarge_Huntingdon.kml");
+	
+}else{
+	
+	loadlayer("TestData/kml/SewDischarge_Huntingdon.kml");
+	
 
+}
 
 </SCRIPT>
   </body>
