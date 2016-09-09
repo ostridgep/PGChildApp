@@ -43,7 +43,7 @@
     -->
 
     <!-- Plugins -->
-<gap:plugin name="cordova-plugin-googlemaps" >
+<gap:plugin name="cordova-plugin-googlemaps" source="npm">
 
     <param name="API_KEY_FOR_ANDROID" value="AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8" />
    
