@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ var handleOpenURL = function(url) {
+            alert("RECEIVED URL: " + url);
+            checkCall(url)
+        };
 function checkPassedParams(){
 
 
@@ -102,10 +106,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-        var handleOpenURL = function(url) {
-            alert("RECEIVED URL: " + url);
-            checkCall(url)
-        };
+       
     }
 };
 function openMap(){
