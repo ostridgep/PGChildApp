@@ -22,7 +22,7 @@
         };
 var caller=""
 function closeTheApp(){
-	window.plugins.copy("This is the Child")
+	window.plugins.clipboard.copy("This is the Child")
 	if (navigator.app) {
 		navigator.app.exitApp();
 		}
