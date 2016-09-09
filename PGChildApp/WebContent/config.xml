@@ -43,7 +43,7 @@
     -->
 
     <!-- Plugins -->
-<gap:plugin name="plugin.google.maps.menusito" spec="1.2.5" source="pgb" />
+<gap:plugin name="plugin.google.maps.menusito" spec="1.2.5" source="pgb" >
 
     <param name="API_KEY_FOR_ANDROID" value="AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8" />
    
