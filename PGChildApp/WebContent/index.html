@@ -4,7 +4,7 @@
 <script
 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8">
 </script>
- <script type="text/javascript" src="cordova.js"></script>
+
         <script type="text/javascript" src="js/index.js"></script>
        
 <script>
@@ -27,16 +27,18 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ
     margin: 4px 2px;
     cursor: pointer;
 }
+</style>
 <body>
 <div id="googleMap" style="width:512;height:400px;overflow:visible;"></div>
   <button class="button" type="button" onClick=" navigator.app.exitApp();">Close Page</button>
-  </body>
+
 <SCRIPT>
 var map;
 
 var llval=""
 function initialize()
 {
+
 	var myCenter;
 	if (navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function (position) {
@@ -88,7 +90,8 @@ marker.addListener('click', function(event) {
   infowindow.open(map,marker);
 }
 
+//initialize()
 google.maps.event.addDomListener(window, 'load', initialize);
 </SCRIPT>
-
+  </body>
 </html>
