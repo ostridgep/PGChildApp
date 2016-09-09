@@ -21,6 +21,17 @@
             checkCall(url)
         };
 var caller=""
+funtion closeTheApp(){
+	if (navigator.app) {
+		navigator.app.exitApp();
+		}
+		else if (navigator.device) {
+		  navigator.device.exitApp();
+		}
+		else {
+		          window.close();
+		}
+}
 function checkPassedParams(){
 
 
