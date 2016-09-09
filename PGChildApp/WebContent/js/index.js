@@ -21,7 +21,7 @@
             checkCall(url)
         };
 var caller=""
-funtion closeTheApp(){
+function closeTheApp(){
 	if (navigator.app) {
 		navigator.app.exitApp();
 		}
