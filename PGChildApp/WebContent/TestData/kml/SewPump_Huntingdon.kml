@@ -8,7 +8,7 @@
 <SimpleField type="xsd:double" name="G3E_FID">
 <displayName>G3E_FID</displayName>
 </SimpleField>
-</Schema>
+</Schema> 
 <Folder id="kml_ft_SewPump_Huntingdon">
 <name>SewPump_Huntingdon</name>
 <Placemark id="kml_1">
