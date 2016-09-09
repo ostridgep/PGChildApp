@@ -1,34 +1,76 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>PG Child App</title>
-    </head>
+<head>
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3PJWHRfNKb4QM3seT0dusiQeZ6N7AyW8">
+</script>
+ <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+<script>
+
+
+var map;
+
+var llval=""
+function initialize()
+{
+	var myCenter;
+	if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(function (position) {
+	    	myCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	       map.setCenter(myCenter);
+	    });
+
+
+	}else{
+		myCenter=new google.maps.LatLng(51.508742,-0.120850);
+	}
+var mapProp = {
+  center:myCenter,
+  zoom:15,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+ 
+  
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+  });
+  google.maps.event.addListenerOnce(map,'idle',function(){
+	  google.maps.event.trigger(map, "resize");
+  })
+}
+
+function placeMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+marker.addListener('click', function(event) {
+    var lat = marker.getPosition().lat();
+	var lng = marker.getPosition().lng();
+	llval=lat+","+lng
+	if(caller=="myjobs"){
+		window.open("myjobshost://?latlong="+llval)
+		location.href="index.html"
+	}
+	
+	
+
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
 <style>
 .button {
     background-color: #4CAF50;
@@ -42,21 +84,11 @@
     margin: 4px 2px;
     cursor: pointer;
 }
-</style>   
-    <body>
-        <div class="app">
-            <h1>PG Child App</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-                   <BR>
-                 <button class="button" type="button" onClick="openMap()">first Page</button>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+<body>
+<div id="googleMap" style="width:512;height:400px;overflow:visible;"></div>
+  <button class="button" type="button" onClick="openMap()">first Page</button>
+<SCRIPT>
+
+</SCRIPT>
+</body>
 </html>

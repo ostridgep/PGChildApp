@@ -17,9 +17,10 @@
  * under the License.
  */
  var handleOpenURL = function(url) {
-            alert("RECEIVED URL: " + url);
+            
             checkCall(url)
         };
+var caller=""
 function checkPassedParams(){
 
 
@@ -30,11 +31,10 @@ function checkPassedParams(){
 		    	  xxx=xx[1].split("=")
 		    	  if(xxx[0]=="MYJOBS")
 		    	  	{
-		    		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
+		    		  aller="MYJOBS"
+		    		  
 		    		  }
-		    	  else{
-		    		  alert("received url: " + xxx[0]+"---"+xxx[1]); 
-		    	  	}
+		    	  
 		    	  
 		    	  
 		       
@@ -60,7 +60,7 @@ function checkCall(url){
     	  alert(xxx[0])
     	  if(xxx[0]=="MYJOBS")
     	  	{
-    		  alert("off to maps")
+    		  alert("call is Host App")
     		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
     		  }
     	  else{
