@@ -18,7 +18,7 @@
  */
 function checkPassedParams(){
 
-alert("here")
+
 		    window.plugins.launchmyapp.getLastIntent(function(url) {
 		    	alert("url:"+url)
 		      if (url.indexOf('myjobschild://' > -1)) {
@@ -63,9 +63,11 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-    	checkPassedParams();
+    	
         app.receivedEvent('deviceready');
-       
+        var handleOpenURL = function(url) {
+            alert("RECEIVED URL: " + url);
+        };
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -80,3 +82,7 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+function openMap(){
+	checkPassedParams();
+	location.href='GoogleMapsGetLocation.html'
+}
