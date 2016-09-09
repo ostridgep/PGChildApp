@@ -54,10 +54,13 @@ function checkCall(url){
    
     	alert("ckurl:"+url)
       if (url.indexOf('myjobschild://' > -1)) {
+    	  alert("1")
     	  xx=url.split("?")
     	  xxx=xx[1].split("=")
+    	  alert(xxx[0])
     	  if(xxx[0]=="MYJOBS")
     	  	{
+    		  alert("off to maps")
     		  location.href("GoogleMapsGetLocation.html?caller=myjobs")
     		  }
     	  else{
@@ -97,7 +100,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-    	alert("received"+id)
+    	
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
